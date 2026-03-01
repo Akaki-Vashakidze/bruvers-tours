@@ -1,0 +1,17 @@
+<section class="tours-section">
+  <div class="tours-grid">
+    @for (card of tourCards; track card.title) {
+      <div class="tour-card">
+        <div class="card-image">
+            <img src="/assets/images/bk1.jpg" [alt]="card.title">
+        </div>
+        
+        <div class="card-content">
+          <h3>{{ card.title }}</h3>
+          <p>{{ card.description }}</p>
+          <a [routerLink]="card.link" class="btn-learn-more">Learn More</a>
+        </div>
+      </div>
+    }
+  </div>
+</section>
