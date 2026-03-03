@@ -11,22 +11,22 @@ import { RouterModule } from '@angular/router';
 export class TourCardsComponent {
   tourCards = [
     {
-      title: 'Plastic Pollution',
-      description: 'Plastic pollution harms ocean wildlife and threatens the life-supporting functions of healthy seas. Oceanic Society is working to reduce ocean plastic pollution worldwide.',
+      title: 'Tusheti National Park',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utsa.',
       image: '/assets/images/bk1.jpg',
-      link: '/plastic-pollution'
+      id: '/id1'
     },
     {
-      title: 'Climate Change',
-      description: 'Climate change is causing warming oceans, sea level rise, and ocean acidification, leading to ecosystem changes, coral bleaching, and other significant impacts.',
+      title: 'Armenia Cycling Routes',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utsa.',
       image: '/assets/images/climate-action.jpg',
-      link: '/climate-change'
+      id: '/id2'
     },
     {
-      title: 'Conservation Travel',
-      description: 'Through Oceanic Society\'s Expedition Impact Program, your journey supports global ocean conservation, coral restoration, and efforts to offset plastic pollution.',
+      title: 'Svaneti Mountains',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi utsa.',
       image: '/assets/images/conservation.jpg',
-      link: '/conservation-travel'
+      id: '/id3'
     }
   ];
 }

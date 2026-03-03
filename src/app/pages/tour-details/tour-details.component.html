@@ -1,0 +1,35 @@
+<section class="hero-container" [style.background-image]="'url(' + backgroundImage + ')'">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Guided Tour</span>
+    <h1>{{ heroHeadline }}</h1>
+    <p>{{ heroSubHeadline }}</p>
+  </div>
+</section>
+
+<section class="tour-details-section">
+  <div class="container">
+    <div class="details-grid">
+      <div class="description-column">
+        <h2>{{ tourTitle }}</h2>
+        <p>{{ tourDescription }}</p>
+      </div>
+      
+      <div class="info-column">
+        <div class="info-card" *ngFor="let detail of details">
+          <span class="info-label">{{ detail.label }}</span>
+          <span class="info-value">{{ detail.value }}</span>
+        </div>
+        
+        <button (click)="isModalOpen = true" style="cursor: pointer;" class="btn-primary">Book This Tour</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-booking-dialog 
+  [tourName]="tourTitle" 
+  [isOpen]="isModalOpen"
+  (close)="isModalOpen = false"
+  (submitBooking)="handleBookingSubmission($event)">
+</app-booking-dialog>

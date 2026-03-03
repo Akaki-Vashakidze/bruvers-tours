@@ -1,0 +1,98 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal-container {
+  background: white;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modal-header {
+  padding: 20px 25px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 { margin: 0; font-size: 1.5rem; color: var(--primary-color); }
+  .close-btn { 
+    background: none; border: none; font-size: 2rem; cursor: pointer; color: #999;
+    &:hover { color: #333; }
+  }
+}
+
+.modal-body {
+  padding: 25px;
+  
+  .booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      label { font-weight: 600; font-size: 0.9rem; }
+      .form-control {
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-family: inherit;
+        &:focus { outline: none; border-color: var(--accent-color); }
+      }
+    }
+
+    .instruction { font-size: 0.85rem; color: #666; margin: 10px 0 0; }
+    .error { color: #e74c3c; font-size: 0.75rem; }
+    .final-error {
+      background: #fdf2f2; color: #e74c3c; padding: 10px;
+      border-radius: 8px; font-size: 0.85rem; text-align: center;
+    }
+  }
+}
+
+.modal-footer {
+  padding: 15px 25px;
+  background: #f9f9f9;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+
+  .btn {
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    
+    &-secondary { background: #eee; color: #333; &:hover { background: #ddd; } }
+    &-primary { 
+      background: var(--accent-color); color: white;
+      &:disabled { opacity: 0.5; cursor: not-allowed; }
+      &:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
+    }
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}

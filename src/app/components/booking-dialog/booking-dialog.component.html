@@ -1,0 +1,52 @@
+<div class="modal-overlay" *ngIf="isOpen" (click)="onCancel()">
+  <div class="modal-container" (click)="$event.stopPropagation()">
+    
+    <div class="modal-header">
+      <h2>Book: {{ tourName }}</h2>
+      <button class="close-btn" (click)="onCancel()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <form [formGroup]="bookingForm" class="booking-form">
+        
+        <div class="form-group">
+          <label>Number of People</label>
+          <input type="number" formControlName="personCount" class="form-control">
+          <small class="error" *ngIf="bookingForm.get('personCount')?.touched && bookingForm.get('personCount')?.invalid">
+            Please enter at least 1 guest.
+          </small>
+        </div>
+
+        <p class="instruction">Please provide at least one contact method.</p>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" formControlName="email" class="form-control" placeholder="example@mail.com">
+          <small class="error" *ngIf="bookingForm.get('email')?.touched && bookingForm.get('email')?.hasError('email')">
+            Please enter a valid email.
+          </small>
+        </div>
+
+        <div class="form-group">
+          <label>Mobile Number</label>
+          <input type="tel" formControlName="mobile" class="form-control" placeholder="+1234567890">
+          <small class="error" *ngIf="bookingForm.get('mobile')?.touched && bookingForm.get('mobile')?.hasError('pattern')">
+            Please enter a valid phone number.
+          </small>
+        </div>
+
+        <div class="final-error" *ngIf="bookingForm.hasError('atLeastOneRequired') && bookingForm.touched">
+          Email or Mobile Number is required.
+        </div>
+      </form>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+      <button class="btn btn-primary" [disabled]="bookingForm.invalid" (click)="onConfirm()">
+        Confirm Booking
+      </button>
+    </div>
+
+  </div>
+</div>

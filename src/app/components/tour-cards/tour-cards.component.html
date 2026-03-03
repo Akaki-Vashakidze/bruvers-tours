@@ -9,7 +9,7 @@
         <div class="card-content">
           <h3>{{ card.title }}</h3>
           <p>{{ card.description }}</p>
-          <a [routerLink]="card.link" class="btn-learn-more">Learn More</a>
+          <a [routerLink]="'/tour-details/' + card.id" class="btn-learn-more">Learn More</a>
         </div>
       </div>
     }
