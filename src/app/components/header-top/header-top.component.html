@@ -1,6 +1,6 @@
 <header class="navbar" [class.sticky-visible]="isSticky">
   <div class="container">
-    <a routerLink="/" class="logo-link">
+    <a routerLink="/" class="logo-link" (click)="closeMobileMenu()">
       <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <circle cx="5.5" cy="17.5" r="3.5"></circle>
         <circle cx="18.5" cy="17.5" r="3.5"></circle>
@@ -9,34 +9,44 @@
       <span class="logo-text">Velocita<span class="highlight">Tours</span></span>
     </a>
 
-    <nav class="nav-links">
+    <button class="mobile-menu-toggle" (click)="toggleMobileMenu($event)" [class.open]="isMobileMenuOpen">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="nav-links" [class.mobile-active]="isMobileMenuOpen">
       <div *ngFor="let item of navItems" class="nav-item-wrapper">
+        
         <ng-container *ngIf="item.dropdown; else simpleLink">
-          <div class="nav-item dropdown-toggle">
+          <div class="nav-item dropdown-toggle" (click)="toggleSubmenu(item, $event)" [class.active]="item.isSubmenuOpen">
             {{ item.name }}
-            <div class="dropdown-menu">
-              <a *ngFor="let subItem of item.dropdown" 
-                 [routerLink]="subItem.link" 
-                 class="dropdown-item">
-                {{ subItem.name }}
-              </a>
-            </div>
+            <svg class="chevron-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </div>
+          
+          <div class="dropdown-menu" [class.show]="item.isSubmenuOpen">
+            <a *ngFor="let subItem of item.dropdown" 
+               [routerLink]="subItem.link" 
+               class="dropdown-item"
+               (click)="closeMobileMenu()">
+              {{ subItem.name }}
+            </a>
           </div>
         </ng-container>
 
         <ng-template #simpleLink>
-          <a [routerLink]="item.link" class="nav-item" routerLinkActive="active-link">
+          <a [routerLink]="item.link" 
+             class="nav-item" 
+             routerLinkActive="active-link" 
+             (click)="closeMobileMenu()">
             {{ item.name }}
           </a>
         </ng-template>
       </div>
-
-      <a href="#" class="nav-item search-icon" aria-label="Search">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </a>
     </nav>
   </div>
+
+  <div class="menu-overlay" *ngIf="isMobileMenuOpen" (click)="closeMobileMenu()"></div>
 </header>

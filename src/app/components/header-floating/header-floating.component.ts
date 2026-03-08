@@ -11,15 +11,23 @@ import { RouterModule } from "@angular/router";
 })
 export class HeaderFloatingComponent {
   isScrolled: boolean = false;
+  isMobileMenuOpen: boolean = false;
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.isScrolled = window.pageYOffset > 100;
+@HostListener('window:scroll', [])
+onWindowScroll() {
+  // 1. Existing logic to hide the floating bar
+  this.isScrolled = window.pageYOffset > 100;
+
+  // 2. New logic: If the menu is open and the user scrolls, close it
+  if (this.isMobileMenuOpen) {
+    this.closeMobileMenu();
   }
+}
 
-  navItems = [
+  navItems: any[] = [
     { 
       name: 'Destinations', 
+      isSubmenuOpen: false,
       dropdown: [
         { name: 'Mountain Trails', link: '/mountains' },
         { name: 'Coastal Routes', link: '/coastal' },
@@ -32,4 +40,19 @@ export class HeaderFloatingComponent {
     { name: 'Blog', link: '/blog' },
     { name: 'Contact', link: '/contact' },
   ];
+
+  toggleMobileMenu(event: Event) {
+    event.stopPropagation();
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+  }
+
+  toggleSubmenu(item: any, event: Event) {
+    event.stopPropagation();
+    item.isSubmenuOpen = !item.isSubmenuOpen;
+  }
+
+  closeMobileMenu() {
+    this.isMobileMenuOpen = false;
+    this.navItems.forEach(i => i.isSubmenuOpen = false);
+  }
 }
