@@ -1,33 +1,42 @@
-
 $font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 .community-cta-container {
   width: 100%;
-  height: 80vh; 
+  min-height: 80vh; // Changed to min-height for content safety
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  padding: 80px 20px;
+  position: relative;
   
+  // Background logic
+  background-image: url('/assets/images/bk1.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed; 
-  background-image: url('/assets/images/bk1.jpg'); 
-  padding: 40px 20px;
-  flex-direction: column;
+
+  @media (max-width: 768px) {
+    background-attachment: scroll; // Fixes the "middle crop" and lag on mobile
+    min-height: 60vh;
+    padding: 60px 20px;
+  }
 }
 
 .cta-card {
-    position: relative;
-    top: -400px;
+  position: relative;
+  // REMOVED top: -400px; as it breaks layout
+  background-color: #fff; // Fallback for var
   background-color: var(--bg-color);
   width: 100%;
   max-width: 650px;
   border-radius: 16px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3); 
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2); 
   overflow: hidden;
   font-family: $font-family;
-  
+  margin-bottom: 40px; // Spacing for footer text
+  top: -300px;
   .card-border-top {
     height: 8px;
     background-color: var(--accent-color); 
@@ -42,6 +51,7 @@ $font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       color: var(--primary-color);
       margin-bottom: 30px;
       font-weight: 700;
+      line-height: 1.2;
     }
     
     form {
@@ -54,7 +64,7 @@ $font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 14px;
         font-weight: 600;
         color: var(--primary-color);
-        align-self: flex-start; // Align to left
+        align-self: flex-start;
       }
       
       input {
@@ -64,6 +74,7 @@ $font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         border-radius: 8px;
         font-size: 16px;
         background-color: #f9f9f9;
+        box-sizing: border-box; // Ensures padding doesn't break width
         
         &:focus {
           outline: 2px solid var(--accent-color);
@@ -82,6 +93,8 @@ $font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 16px;
         cursor: pointer;
         transition: all 0.3s ease;
+        width: 100%; // Better for mobile tap targets
+        max-width: 280px;
         
         &:hover {
           filter: brightness(0.95);
@@ -92,12 +105,23 @@ $font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 }
 
+.footer-text {
+  position: relative;
+  font-size: 20px;
+  color: #fff;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
 @media (max-width: 768px) {
-  .cta-card .card-body {
-    padding: 30px 20px;
-    
-    h2 {
-      font-size: 28px;
+  .cta-card {
+    .card-body {
+      padding: 40px 25px;
+      
+      h2 {
+        font-size: 26px;
+        margin-bottom: 20px;
+      }
     }
   }
 }
