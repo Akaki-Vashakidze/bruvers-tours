@@ -1,12 +1,7 @@
 <header class="floating-navbar" [class.hidden]="isScrolled">
   <div class="container">
     <a routerLink="/" class="logo-link" (click)="closeMobileMenu()">
-      <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <circle cx="5.5" cy="17.5" r="3.5"></circle>
-        <circle cx="18.5" cy="17.5" r="3.5"></circle>
-        <path d="M12 17.5V11l-3-3 3-3h5l3 3"></path>
-      </svg>
-      <span class="logo-text">Velocita<span class="highlight">Tours</span></span>
+      <img src="/assets/images/bruversPurple.png" width="60" alt="logo">
     </a>
 
     <button class="mobile-menu-toggle" (click)="toggleMobileMenu($event)" [class.open]="isMobileMenuOpen">
